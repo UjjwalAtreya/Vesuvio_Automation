@@ -7,14 +7,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 public class OrangeHRMLoginMainMethod {
 
     WebDriver driver;
     @BeforeMethod
     public void setup() throws InterruptedException {
         // Setting up webdriver and base url
-        driver = WebDriverManager.chromiumdriver().create();
+        driver = WebDriverManager.chromedriver().create();
         driver.manage().window().maximize();
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         Thread.sleep(5000);
@@ -31,6 +30,7 @@ public class OrangeHRMLoginMainMethod {
     }
 
     @Test
+
     public void forgetPassword() {
         // username blank, valid password
         String username = "";
@@ -51,12 +51,22 @@ public class OrangeHRMLoginMainMethod {
         }
     }
 
+
+    public void testToLoginWithoutCredentials(){
+        driver.findElement(By.name("username")).sendKeys("Abcde");
+        driver.findElement(By.name("password")).sendKeys("");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        String pageTile = driver.getTitle();
+        Assert.assertEquals(pageTile,"OrangeHRM");
+    }
+
+
+
     @AfterMethod
     public void tearDown(){
         // Browser quit
         driver.quit();
     }
-
 
 }
 
