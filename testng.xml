@@ -3,12 +3,14 @@
 
 <suite name="Automation Suite" parallel="tests">
     <!--LOGIN COMBINATION TEST-->
-    <test name="LOGIN (Combinations) TEST">
+    <test name="LOGIN (Combinations) TEST" thread-count="4" verbose="2" parallel="methods">
 <!--        <parameter name="browserName" value="chrome"/>-->
         <classes>
             <class name="LoginTest">
                 <methods>
                     <include name="testValidUserNamePassword"/>
+                    <include name="deriverThres"/>
+                    <include name="deriverTshres"/>
                 </methods>
             </class>
         </classes>

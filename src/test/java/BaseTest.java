@@ -14,13 +14,14 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         Thread.sleep(5000);
+        Helper.setWebDriver(driver);
     }
 
 
     @AfterMethod
     public void tearDown(){
         // Browser quit
-        driver.quit();
+        Helper.getDriver().quit();
     }
 
 }
